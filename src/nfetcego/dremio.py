@@ -26,7 +26,7 @@ base_query = '''
         ,nfe.produto_tipo_medida
         ,nfe.produto_quantidade
         ,nfe.produto_valor_total
-        FROM NFeComprasGov nfe
+        FROM IE.NFE.NFeComprasGov nfe
         '''
 
 
