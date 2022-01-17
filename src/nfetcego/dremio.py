@@ -6,6 +6,7 @@ from pkg_resources import resource_filename
 
 from nfetcego.cfgparse import (get_dremio_connection, get_dremio_password,
                                get_dremio_user)
+from nfetcego.io import read_sql
 
 path_dremio_driver = resource_filename(
     'nfetcego.resources', 'dremio-jdbc-driver.jar')
@@ -61,7 +62,11 @@ def execute_query(query):
 
 
 def get_data(options):
-    query = construct_query(options)
+
+    if 'from_sql' in options:
+        query = read_sql(options['from_sql'])
+    else:
+        query = construct_query(options)
     data = execute_query(query)
     return data
 

@@ -113,5 +113,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# config.ini
+# Local files and directories
 config.ini
+notes.md

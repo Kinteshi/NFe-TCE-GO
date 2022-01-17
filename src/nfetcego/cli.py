@@ -25,6 +25,16 @@ parser.add_argument(
         ''',
 )
 
+parser.add_argument(
+    '--from-sql', '-sql',
+    action='store',
+    type=str,
+    nargs=1,
+    help='''
+        Indica um arquivo SQL para ser executado: opcional. Só é funcional quando a tarefa selecionada é \'extract\'.
+        ''',
+)
+
 
 def main():
     args = parser.parse_args()
@@ -32,6 +42,8 @@ def main():
     if args.task == 'extract':
         if args.limit:
             options['limit'] = args.limit[0]
+        if args.from_sql:
+            options['from_sql'] = args.from_sql[0]
         from nfetcego.workflows.extraction import extraction_flow
         extraction_flow(options)
         sys.exit(0)
